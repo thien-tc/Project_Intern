@@ -114,7 +114,7 @@ export function ChatPopup({ isOpen, onClose, chatId, chatName = "Team Chat" }: C
                 <CardTitle className="text-sm">{chatName}</CardTitle>
                 <p className="text-xs text-muted-foreground">
                   {state.users.length} members online
-                </p>``
+                </p>
               </div>
             </div>
             
