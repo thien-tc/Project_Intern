@@ -14,7 +14,6 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { ThemeToggle } from '@/components/common/ThemeToggle';
 import { UserAvatar } from '@/components/common/UserAvatar';
 import { CreateGroupDialog } from '@/components/groups/CreateGroupDialog';
 import { useApp } from '@/context/AppContext';
@@ -59,7 +58,7 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
       label: 'Notifications', 
       path: '/notifications', 
       badge: 3,
-      onClick: () => console.log('Notifications clicked')
+      active: location.pathname === '/notifications'
     },
     { icon: Target, label: 'Goals', path: '/goals' },
     { icon: Clock, label: 'Time Tracking', path: '/time-tracking', active: location.pathname === '/time-tracking' },
@@ -126,21 +125,7 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
           <nav className="p-2">
             {navItems.map((item) => (
               <div key={item.path}>
-                {item.path === '/notifications' ? (
-                  <Button
-                    variant={item.active ? "secondary" : "ghost"}
-                    className="w-full justify-start mb-1 h-8 relative"
-                    onClick={item.onClick}
-                  >
-                    <item.icon className="mr-3 h-4 w-4" />
-                    <span className="text-sm">{item.label}</span>
-                    {item.badge && (
-                      <Badge variant="destructive" className="ml-auto h-5 px-2 text-xs">
-                        {item.badge}
-                      </Badge>
-                    )}
-                  </Button>
-                ) : (
+                
                   <Link to={item.path}>
                     <Button
                       variant={item.active ? "secondary" : "ghost"}
@@ -155,7 +140,7 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
                       )}
                     </Button>
                   </Link>
-                )}
+
               </div>
             ))}
           </nav>
@@ -255,13 +240,6 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
                 <div className="ml-auto w-2 h-2 bg-green-500 rounded-full" />
               </Button>
             ))}
-          </div>
-        </div>
-
-        {/* Footer - Simplified without user info */}
-        <div className="p-4 border-t border-border">
-          <div className="flex items-center justify-center">
-            <ThemeToggle />
           </div>
         </div>
       </div>

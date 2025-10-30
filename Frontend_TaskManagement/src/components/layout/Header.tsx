@@ -1,8 +1,8 @@
-import { Bell, Plus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { UserAvatar } from '@/components/common/UserAvatar';
-import { useApp } from '@/context/AppContext';
-
+import { Bell, Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { UserAvatar } from "@/components/common/UserAvatar";
+import { useApp } from "@/context/AppContext";
+import { ThemeToggle } from "@/components/common/ThemeToggle";
 interface HeaderProps {
   title: string;
   subtitle?: string;
@@ -10,7 +10,12 @@ interface HeaderProps {
   onNewTask?: () => void;
 }
 
-export function Header({ title, subtitle, showNewTaskButton = false, onNewTask }: HeaderProps) {
+export function Header({
+  title,
+  subtitle,
+  showNewTaskButton = false,
+  onNewTask,
+}: HeaderProps) {
   const { state } = useApp();
 
   return (
@@ -22,7 +27,7 @@ export function Header({ title, subtitle, showNewTaskButton = false, onNewTask }
             <p className="text-sm text-muted-foreground">{subtitle}</p>
           )}
         </div>
-        
+
         <div className="flex items-center gap-4">
           {showNewTaskButton && (
             <Button onClick={onNewTask} className="gap-2">
@@ -30,14 +35,20 @@ export function Header({ title, subtitle, showNewTaskButton = false, onNewTask }
               New Task
             </Button>
           )}
-          
+          {/* Footer - Simplified without user info */}
+          <div className="p-4 border-t border-border">
+            <div className="flex items-center justify-center">
+              <ThemeToggle />
+            </div>
+          </div>
+
           <Button variant="ghost" size="sm" className="relative">
             <Bell className="h-4 w-4" />
             <span className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full text-[10px] text-white flex items-center justify-center">
               3
             </span>
           </Button>
-          
+
           <UserAvatar user={state.currentUser} showName />
         </div>
       </div>

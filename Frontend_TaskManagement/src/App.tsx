@@ -9,6 +9,9 @@ import TimeTracking from './pages/TimeTracking';
 import Analytics from './pages/Analytics';
 import Chat from './pages/Chat';
 import NotFound from './pages/NotFound';
+import Landing from './pages/Landing';
+import Login from './pages/Login';
+import Register from './pages/Register'
 
 const queryClient = new QueryClient();
 
@@ -20,8 +23,12 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/landing" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/tasks" element={<Tasks />} />
             <Route path="/time-tracking" element={<TimeTracking />} />
+            <Route path="/notifications" element={<NotFound />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="*" element={<NotFound />} />
