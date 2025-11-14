@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -6,7 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Eye, EyeOff, ArrowLeft } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, replace, useNavigate, useSearchParams } from 'react-router-dom';
+import { authService } from '@/services/authService';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -17,30 +18,33 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [searchParams] = useSearchParams();
 
+
+  useEffect(() =>{
+    // handle Google OAuth callback
+    if(authService.handleGoogleCallback(searchParams)){
+      navigate('/dashboard', { replace: true } );
+    }
+
+  }, [searchParams, navigate]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
 
-    // Simulate login process
+    // login process
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Simple validation
-      if (formData.email && formData.password) {
-        // Store user session (in real app, this would be handled by auth service)
-        localStorage.setItem('isAuthenticated', 'true');
-        localStorage.setItem('userEmail', formData.email);
-        
-        // Redirect to dashboard
-        navigate('/');
+      const user = await authService.login(formData.email, formData.password);
+      console.log('Login successful:', user);
+      navigate('/dashboard'); // chuyển sang trang home sau khi login thành công
+    } catch (err: any) {
+      if(err.response && err.response.data ){
+        setError(err.response.data.message );
       } else {
-        setError('Can you input all information');
+        setError('An unexpected error occurred. Please try again.');
       }
-    } catch (err) {
-      setError('Something went wrong. Please try again.');
-    } finally {
+    } finally{
       setIsLoading(false);
     }
   };
@@ -55,9 +59,7 @@ export default function Login() {
 
   const handleGoogleLogin = () => {
     // Simulate Google login
-    localStorage.setItem('isAuthenticated', 'true');
-    localStorage.setItem('userEmail', 'user@gmail.com');
-    navigate('/');
+    authService.googleLogin();
   };
 
   return (

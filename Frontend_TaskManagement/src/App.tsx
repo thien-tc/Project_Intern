@@ -1,17 +1,18 @@
-import { Toaster } from '@/components/ui/sonner';
-import { TooltipProvider } from '@/components/ui/tooltip';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AppProvider } from '@/context/AppContext';
-import Dashboard from './pages/Dashboard';
-import Tasks from './pages/Tasks';
-import TimeTracking from './pages/TimeTracking';
-import Analytics from './pages/Analytics';
-import Chat from './pages/Chat';
-import NotFound from './pages/NotFound';
-import Landing from './pages/Landing';
-import Login from './pages/Login';
-import Register from './pages/Register'
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AppProvider } from "@/context/AppContext";
+import Dashboard from "./pages/Dashboard";
+import Tasks from "./pages/Tasks";
+import TimeTracking from "./pages/TimeTracking";
+import Analytics from "./pages/Analytics";
+import Chat from "./pages/Chat";
+import NotFound from "./pages/NotFound";
+import Landing from "./pages/Landing";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -22,15 +23,53 @@ const App = () => (
         <Toaster />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/landing" element={<Landing />} />
+            {/* public Route */}
+            <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/tasks" element={<Tasks />} />
-            <Route path="/time-tracking" element={<TimeTracking />} />
-            <Route path="/notifications" element={<NotFound />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/chat" element={<Chat />} />
+
+            {/* protected Route */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tasks"
+              element={
+                <ProtectedRoute>
+                  <Tasks />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/time-tracking"
+              element={
+                <ProtectedRoute>
+                  <TimeTracking />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/analytics"
+              element={
+                <ProtectedRoute>
+                  <Analytics />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/chat"
+              element={
+                <ProtectedRoute>
+                  <Chat />
+                </ProtectedRoute>
+              }
+            />
+            {/* Catch-all route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

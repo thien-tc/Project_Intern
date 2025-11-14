@@ -1,77 +1,125 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Eye, EyeOff, ArrowLeft, CheckCircle } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Eye, EyeOff, ArrowLeft, CheckCircle } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogHeader,
+} from "@/components/ui/dialog";
+import { authService } from "@/services/authService";
+import { set } from "date-fns";
 
 export default function Register() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    agreeToTerms: false
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    agreeToTerms: false,
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
+  const [isOtpOpen, setIsOtpOpen] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [otpError, setOtpError] = useState("");
 
   const passwordRequirements = [
-    { text: 'At least 8 characters', met: formData.password.length >= 8 },
-    { text: 'Has uppercase and lowercase letters', met: /[a-z]/.test(formData.password) && /[A-Z]/.test(formData.password) },
-    { text: 'There is at least 1 number', met: /\d/.test(formData.password) },
+    { text: "At least 8 characters", met: formData.password.length >= 8 },
+    {
+      text: "Has uppercase and lowercase letters",
+      met: /[a-z]/.test(formData.password) && /[A-Z]/.test(formData.password),
+    },
+    { text: "There is at least 1 number", met: /\d/.test(formData.password) },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
+    setError("");
 
     // Validation
-    if (!formData.fullName || !formData.email || !formData.password || !formData.confirmPassword) {
-      setError('Please enter complete information');
+    if (
+      !formData.fullName ||
+      !formData.email ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
+      setError("Please enter complete information");
       setIsLoading(false);
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Confirmation password does not match');
+      setError("Confirmation password does not match");
       setIsLoading(false);
       return;
     }
 
-    if (!passwordRequirements.every(req => req.met)) {
-      setError('Password does not meet requirements');
+    if (!passwordRequirements.every((req) => req.met)) {
+      setError("Password does not meet requirements");
       setIsLoading(false);
       return;
     }
 
     if (!formData.agreeToTerms) {
-      setError('Please agree to the terms of use');
+      setError("Please agree to the terms of use");
       setIsLoading(false);
       return;
     }
 
     // Simulate registration process
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Store user session
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('userEmail', formData.email);
-      localStorage.setItem('userName', formData.fullName);
-      
-      // Redirect to dashboard
-      navigate('/');
-    } catch (err) {
-      setError('Something went wrong. Please try again.');
+      // Gửi OTP đến email
+      await authService.registerSendOtp(formData.email);
+      setIsOtpOpen(true); // mở popup
+    } catch (err: any) {
+      setError(
+        err.response?.data?.message || "Failed to send OTP. Please try again."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  // Tạo hàm xác nhận OTP
+  const handleVerifyOtp = async () => {
+    if (!otp) {
+      setOtpError("Please enter the OTP code");
+      return;
+    }
+    setOtpError("");
+    setIsLoading(true);
+
+    try {
+      await authService.registerVerifyOtp(
+        formData.fullName,
+        formData.email,
+        formData.password,
+        otp
+      );
+      setIsOtpOpen(false);
+      navigate("/login");
+    } catch (err: any) {
+      setOtpError(
+        err.response?.data?.message ||
+          "OTP verification failed. Please try again."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -79,25 +127,28 @@ export default function Register() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleGoogleSignup = () => {
     // Simulate Google signup
-    localStorage.setItem('isAuthenticated', 'true');
-    localStorage.setItem('userEmail', 'user@gmail.com');
-    localStorage.setItem('userName', 'Google User');
-    navigate('/');
+    localStorage.setItem("isAuthenticated", "true");
+    localStorage.setItem("userEmail", "user@gmail.com");
+    localStorage.setItem("userName", "Google User");
+    navigate("/");
   };
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Back to landing */}
-        <Link to="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-6 transition-colors">
+        <Link
+          to="/"
+          className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-6 transition-colors"
+        >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Retrun home
         </Link>
@@ -155,7 +206,7 @@ export default function Register() {
                   <Input
                     id="password"
                     name="password"
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     placeholder="Create strong passwod"
                     value={formData.password}
                     onChange={handleInputChange}
@@ -175,13 +226,22 @@ export default function Register() {
                     )}
                   </Button>
                 </div>
-                
+
                 {/* Password Requirements */}
                 {formData.password && (
                   <div className="space-y-1 text-xs">
                     {passwordRequirements.map((req, index) => (
-                      <div key={index} className={`flex items-center gap-2 ${req.met ? 'text-green-600' : 'text-muted-foreground'}`}>
-                        <CheckCircle className={`h-3 w-3 ${req.met ? 'text-green-600' : 'text-muted-foreground'}`} />
+                      <div
+                        key={index}
+                        className={`flex items-center gap-2 ${
+                          req.met ? "text-green-600" : "text-muted-foreground"
+                        }`}
+                      >
+                        <CheckCircle
+                          className={`h-3 w-3 ${
+                            req.met ? "text-green-600" : "text-muted-foreground"
+                          }`}
+                        />
                         {req.text}
                       </div>
                     ))}
@@ -195,7 +255,7 @@ export default function Register() {
                   <Input
                     id="confirmPassword"
                     name="confirmPassword"
-                    type={showConfirmPassword ? 'text' : 'password'}
+                    type={showConfirmPassword ? "text" : "password"}
                     placeholder="Cornfirm password"
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
@@ -215,25 +275,31 @@ export default function Register() {
                     )}
                   </Button>
                 </div>
-                {formData.confirmPassword && formData.password !== formData.confirmPassword && (
-                  <p className="text-xs text-red-500">Cornfirm password not match</p>
-                )}
+                {formData.confirmPassword &&
+                  formData.password !== formData.confirmPassword && (
+                    <p className="text-xs text-red-500">
+                      Cornfirm password not match
+                    </p>
+                  )}
               </div>
 
               <div className="flex items-center space-x-2">
                 <Checkbox
                   id="agreeToTerms"
                   checked={formData.agreeToTerms}
-                  onCheckedChange={(checked) => 
-                    setFormData(prev => ({ ...prev, agreeToTerms: checked as boolean }))
+                  onCheckedChange={(checked) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      agreeToTerms: checked as boolean,
+                    }))
                   }
                 />
                 <Label htmlFor="agreeToTerms" className="text-sm">
-                  I agree with{' '}
+                  I agree with{" "}
                   <Link to="/terms" className="text-primary hover:underline">
                     Terms of Use
-                  </Link>{' '}
-                  và{' '}
+                  </Link>{" "}
+                  và{" "}
                   <Link to="/privacy" className="text-primary hover:underline">
                     Privacy Policy
                   </Link>
@@ -241,7 +307,7 @@ export default function Register() {
               </div>
 
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Creating account...' : 'Create account'}
+                {isLoading ? "Creating account..." : "Create account"}
               </Button>
             </form>
 
@@ -256,9 +322,9 @@ export default function Register() {
               </div>
             </div>
 
-            <Button 
-              variant="outline" 
-              className="w-full" 
+            <Button
+              variant="outline"
+              className="w-full"
               onClick={handleGoogleSignup}
             >
               <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
@@ -283,7 +349,9 @@ export default function Register() {
             </Button>
 
             <div className="text-center text-sm">
-              <span className="text-muted-foreground">Do you have account? </span>
+              <span className="text-muted-foreground">
+                Do you have account?{" "}
+              </span>
               <Link to="/login" className="text-primary hover:underline">
                 Login now
               </Link>
@@ -291,6 +359,36 @@ export default function Register() {
           </CardContent>
         </Card>
       </div>
+      {/* OTP Dialog */}
+      <Dialog open={isOtpOpen} onOpenChange={setIsOtpOpen}>
+        <DialogContent className="sm:max-w-[400px]">
+          <DialogHeader>
+            <DialogTitle>Verify your email</DialogTitle>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground mb-2">
+            We’ve sent a 6-digit OTP to{" "}
+            <span className="font-semibold">{formData.email}</span>. Please
+            enter it below to complete registration.
+          </p>
+
+          <div className="space-y-3">
+            <Input
+              placeholder="Enter OTP"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+            />
+            {otpError && <p className="text-sm text-red-500">{otpError}</p>}
+
+            <Button
+              onClick={handleVerifyOtp}
+              disabled={isLoading}
+              className="w-full"
+            >
+              {isLoading ? "Verifying..." : "Confirm OTP"}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

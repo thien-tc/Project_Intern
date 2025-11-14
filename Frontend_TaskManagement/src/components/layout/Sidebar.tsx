@@ -51,7 +51,7 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
   };
 
   const navItems = [
-    { icon: Home, label: 'Home', path: '/', active: location.pathname === '/' },
+    { icon: Home, label: 'Home', path: '/dashboard', active: location.pathname === '/dashboard' },
     { icon: MessageCircle, label: 'Chat', path: '/chat', active: location.pathname === '/chat' },
     { 
       icon: Bell, 

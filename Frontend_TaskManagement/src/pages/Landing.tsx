@@ -269,7 +269,7 @@ export default function Landing() {
                   <div>
                     <p className="font-semibold">{testimonial.name}</p>
                     <p className="text-sm text-muted-foreground">
-                      {testimonial.role} tại {testimonial.company}
+                      {testimonial.role} In {testimonial.company}
                     </p>
                   </div>
                 </CardContent>
