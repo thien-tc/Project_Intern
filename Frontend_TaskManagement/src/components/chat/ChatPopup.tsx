@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
-import { 
-  MessageCircle, 
-  X, 
-  Send, 
-  Minimize2, 
+import {
+  MessageCircle,
+  X,
+  Send,
+  Minimize2,
   Maximize2,
   Phone,
   Video,
@@ -36,7 +36,7 @@ export function ChatPopup({ isOpen, onClose, chatId, chatName = "Team Chat" }: C
   const { state } = useApp();
   const [message, setMessage] = useState('');
   const [isMinimized, setIsMinimized] = useState(false);
-  
+
   // Mock chat messages
   const [messages] = useState<ChatMessage[]>([
     {
@@ -71,7 +71,7 @@ export function ChatPopup({ isOpen, onClose, chatId, chatName = "Team Chat" }: C
 
   const sendMessage = () => {
     if (!message.trim()) return;
-    
+
     // Here you would typically dispatch to add the message
     console.log('Sending message:', message);
     setMessage('');
@@ -89,10 +89,10 @@ export function ChatPopup({ isOpen, onClose, chatId, chatName = "Team Chat" }: C
   };
 
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('en-US', { 
-      hour: '2-digit', 
+    return date.toLocaleTimeString('en-US', {
+      hour: '2-digit',
       minute: '2-digit',
-      hour12: false 
+      hour12: false
     });
   };
 
@@ -100,9 +100,8 @@ export function ChatPopup({ isOpen, onClose, chatId, chatName = "Team Chat" }: C
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      <Card className={`w-80 shadow-lg transition-all duration-200 ${
-        isMinimized ? 'h-14' : 'h-96'
-      }`}>
+      <Card className={`w-80 shadow-lg transition-all duration-200 ${isMinimized ? 'h-14' : 'h-96'
+        }`}>
         <CardHeader className="p-3 border-b">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -117,7 +116,7 @@ export function ChatPopup({ isOpen, onClose, chatId, chatName = "Team Chat" }: C
                 </p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-1">
               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
                 <Phone className="h-3 w-3" />
@@ -125,17 +124,17 @@ export function ChatPopup({ isOpen, onClose, chatId, chatName = "Team Chat" }: C
               <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
                 <Video className="h-3 w-3" />
               </Button>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 className="h-6 w-6 p-0"
                 onClick={() => setIsMinimized(!isMinimized)}
               >
                 {isMinimized ? <Maximize2 className="h-3 w-3" /> : <Minimize2 className="h-3 w-3" />}
               </Button>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 className="h-6 w-6 p-0"
                 onClick={onClose}
               >
@@ -152,11 +151,11 @@ export function ChatPopup({ isOpen, onClose, chatId, chatName = "Team Chat" }: C
               <div className="space-y-3">
                 {messages.map(msg => {
                   const user = getUser(msg.senderId);
-                  const isCurrentUser = msg.senderId === state.currentUser.id;
-                  
+                  const isCurrentUser = msg.senderId === state.currentUser?.id;
+
                   return (
-                    <div 
-                      key={msg.id} 
+                    <div
+                      key={msg.id}
                       className={`flex gap-2 ${isCurrentUser ? 'flex-row-reverse' : ''}`}
                     >
                       <UserAvatar user={user!} size="sm" />
@@ -167,11 +166,10 @@ export function ChatPopup({ isOpen, onClose, chatId, chatName = "Team Chat" }: C
                             {formatTime(msg.timestamp)}
                           </span>
                         </div>
-                        <div className={`inline-block p-2 rounded-lg text-sm max-w-[200px] ${
-                          isCurrentUser 
-                            ? 'bg-primary text-primary-foreground' 
+                        <div className={`inline-block p-2 rounded-lg text-sm max-w-[200px] ${isCurrentUser
+                            ? 'bg-primary text-primary-foreground'
                             : 'bg-muted'
-                        }`}>
+                          }`}>
                           {msg.content}
                         </div>
                       </div>

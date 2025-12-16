@@ -43,6 +43,16 @@ export const authService = {
         localStorage.setItem('userEmail', data.user.email);
         localStorage.setItem('userFullName', data.user.fullName);
         return data;
+    },
+    logout: () => {
+        localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('token');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userFullName');
+        localStorage.removeItem('userAvatar');
+
+        // chuyển hướng về trang  intro
+        window.location.href = '/';
     }
 
 }

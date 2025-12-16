@@ -21,10 +21,10 @@ export default function Login() {
   const [searchParams] = useSearchParams();
 
 
-  useEffect(() =>{
+  useEffect(() => {
     // handle Google OAuth callback
-    if(authService.handleGoogleCallback(searchParams)){
-      navigate('/dashboard', { replace: true } );
+    if (authService.handleGoogleCallback(searchParams)) {
+      navigate('/dashboard', { replace: true });
     }
 
   }, [searchParams, navigate]);
@@ -39,12 +39,12 @@ export default function Login() {
       console.log('Login successful:', user);
       navigate('/dashboard'); // chuyển sang trang home sau khi login thành công
     } catch (err: any) {
-      if(err.response && err.response.data ){
-        setError(err.response.data.message );
+      if (err.response && err.response.data) {
+        setError(err.response.data.message);
       } else {
         setError('An unexpected error occurred. Please try again.');
       }
-    } finally{
+    } finally {
       setIsLoading(false);
     }
   };
@@ -81,7 +81,7 @@ export default function Login() {
             </div>
             <CardTitle className="text-2xl">Login</CardTitle>
             <CardDescription>
-             Welcome back! Please log in to your account.
+              Welcome back! Please log in to your account.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -134,8 +134,8 @@ export default function Login() {
               </div>
 
               <div className="flex items-center justify-between">
-                <Link 
-                  to="/forgot-password" 
+                <Link
+                  to="/forgot-password"
                   className="text-sm text-primary hover:underline"
                 >
                   Forgot password?
@@ -158,9 +158,9 @@ export default function Login() {
               </div>
             </div>
 
-            <Button 
-              variant="outline" 
-              className="w-full" 
+            <Button
+              variant="outline"
+              className="w-full"
               onClick={handleGoogleLogin}
             >
               <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">

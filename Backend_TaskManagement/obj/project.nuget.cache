@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+beo61pre1g=",
+  "dgSpecHash": "GZk5DROwUg0=",
   "success": true,
-  "projectFilePath": "D:\\Kỳ_6\\Project_Intern\\Backend_TaskManagement\\Backend_TaskManagement.csproj",
+  "projectFilePath": "D:\\Kỳ_6\\Project_Intern\\backend_taskmanagement\\Backend_TaskManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thien\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\thien\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "GdrtEtF3B/EU6+ly5X2BxUemIlkA/c/4V9sOanUzMOA=",
+  "Hash": "u/TKcjxz43VALTvDTqJVKvaauqU9vo0XAC3q+CgrsSI=",
   "Source": "Backend_TaskManagement",
   "BasePath": "_content/Backend_TaskManagement",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Backend_TaskManagement\\wwwroot",
+      "Source": "Backend_TaskManagement",
+      "ContentRoot": "D:\\Kỳ_6\\Project_Intern\\backend_taskmanagement\\wwwroot\\",
+      "BasePath": "_content/Backend_TaskManagement",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

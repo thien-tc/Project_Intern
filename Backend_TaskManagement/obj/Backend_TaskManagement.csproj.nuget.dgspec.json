@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Kỳ_6\\Project_Intern\\Backend_TaskManagement\\Backend_TaskManagement.csproj": {}
+    "D:\\Kỳ_6\\Project_Intern\\backend_taskmanagement\\Backend_TaskManagement.csproj": {}
   },
   "projects": {
-    "D:\\Kỳ_6\\Project_Intern\\Backend_TaskManagement\\Backend_TaskManagement.csproj": {
+    "D:\\Kỳ_6\\Project_Intern\\backend_taskmanagement\\Backend_TaskManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Kỳ_6\\Project_Intern\\Backend_TaskManagement\\Backend_TaskManagement.csproj",
+        "projectUniqueName": "D:\\Kỳ_6\\Project_Intern\\backend_taskmanagement\\Backend_TaskManagement.csproj",
         "projectName": "Backend_TaskManagement",
-        "projectPath": "D:\\Kỳ_6\\Project_Intern\\Backend_TaskManagement\\Backend_TaskManagement.csproj",
+        "projectPath": "D:\\Kỳ_6\\Project_Intern\\backend_taskmanagement\\Backend_TaskManagement.csproj",
         "packagesPath": "C:\\Users\\thien\\.nuget\\packages\\",
-        "outputPath": "D:\\Kỳ_6\\Project_Intern\\Backend_TaskManagement\\obj\\",
+        "outputPath": "D:\\Kỳ_6\\Project_Intern\\backend_taskmanagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

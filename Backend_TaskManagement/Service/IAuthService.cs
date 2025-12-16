@@ -11,6 +11,7 @@ namespace Backend_TaskManagement.Service
         Task<User?> RegisterUser(string fullName, string email, string password);
         Task<bool> IsEmailExist(string email);
         System.Threading.Tasks.Task SendOtpEmail(string email, string otp);
+
     }
 }
     

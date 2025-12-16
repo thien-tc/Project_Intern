@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import { userApi } from '../api/userApi'; 
 import { 
   mockTasks, 
   mockProjects, 
@@ -21,7 +22,7 @@ type Theme = 'light' | 'dark' | 'system';
 
 interface AppState {
   theme: Theme;
-  currentUser: User;
+  currentUser: User | null;
   tasks: Task[];
   projects: Project[];
   users: User[];
@@ -35,6 +36,7 @@ interface AppState {
 }
 
 type AppAction = 
+  | { type: 'SET_CURRENT_USER'; payload: User | null }
   | { type: 'SET_THEME'; payload: Theme }
   | { type: 'ADD_TASK'; payload: Task }
   | { type: 'UPDATE_TASK'; payload: { id: string; updates: Partial<Task> } }
@@ -42,11 +44,12 @@ type AppAction =
   | { type: 'SET_SELECTED_PROJECT'; payload: string | null }
   | { type: 'START_TIME_TRACKING'; payload: { taskId: string } }
   | { type: 'STOP_TIME_TRACKING' }
-  | { type: 'ADD_TIME_ENTRY'; payload: TimeEntry };
+  | { type: 'ADD_TIME_ENTRY'; payload: TimeEntry }
+  | { type: 'UPDATE_USER'; payload: User};
 
 const initialState: AppState = {
   theme: 'system',
-  currentUser: mockUsers[0],
+  currentUser: null,
   tasks: mockTasks,
   projects: mockProjects,
   users: mockUsers,
@@ -61,6 +64,9 @@ const initialState: AppState = {
 
 function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
+    case 'SET_CURRENT_USER':
+      return { ...state, currentUser: action.payload };
+
     case 'SET_THEME':
       return { ...state, theme: action.payload };
     
@@ -72,7 +78,7 @@ function appReducer(state: AppState, action: AppAction): AppState {
           {
             id: Date.now().toString(),
             type: 'task_created',
-            userId: state.currentUser.id,
+            userId: state.currentUser?.id || 'unknown',
             taskId: action.payload.id,
             description: `created task "${action.payload.title}"`,
             timestamp: new Date().toISOString(),
@@ -122,6 +128,14 @@ function appReducer(state: AppState, action: AppAction): AppState {
         ...state,
         timeEntries: [...state.timeEntries, action.payload]
       };
+    case 'UPDATE_USER':
+      return {
+        ...state,
+        currentUser: action.payload,
+        users: state.users.map(user =>
+          user.id === action.payload.id ? action.payload : user
+        )
+      }
     
     default:
       return state;
@@ -147,6 +161,32 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       root.classList.toggle('dark', state.theme === 'dark');
     }
   }, [state.theme]);
+
+  // Fetch user to get User information
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = localStorage.getItem('token');
+      if(token){
+        try{
+          const response = await userApi.getProfile();
+          const userData = response.data;
+          
+          // Map data từ backend về format User của fontend
+          const user: User = {
+            id: userData.id,
+            name: userData.fullName,
+            email: userData.email,
+            avatar: userData.avatarUrl || '',
+            role: userData.role || 'Member',
+          };
+          dispatch({ type: 'SET_CURRENT_USER', payload: user });
+        }catch(error){
+          console.error(error);
+        }
+      }
+    }
+    fetchUser();
+  }, []);
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

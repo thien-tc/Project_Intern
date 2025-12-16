@@ -10,7 +10,7 @@ export default function Dashboard() {
 
   return (
     <MainLayout 
-      title={`Welcome back, ${state.currentUser.name.split(' ')[0]}!`}
+      title={`Welcome back, ${state.currentUser?.name.split(' ')[0]}!`}
       subtitle="Here's what's happening in your workspace today."
       showNewTaskButton
       onNewTask={() => {

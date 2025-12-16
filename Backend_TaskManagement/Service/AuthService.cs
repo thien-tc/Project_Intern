@@ -14,11 +14,14 @@ namespace Backend_TaskManagement.Service
     {
         private readonly IConfiguration _config;
         private readonly ProjectHubContext _context;
+
         public AuthService(IConfiguration config, ProjectHubContext context)
         {
             _config = config;
             _context = context;
         }
+
+
         // Đăng ký người dùng mới
         public async Task<User?> RegisterUser(string fullName, string email, string password)
         {
@@ -40,6 +43,9 @@ namespace Backend_TaskManagement.Service
              await _context.SaveChangesAsync();// đây mới là bước thật sự ghi vào database
             return newUser;
         }
+
+
+
         // gửi email
         public async System.Threading.Tasks.Task SendOtpEmail(string email, string otp)
         {
@@ -59,11 +65,17 @@ namespace Backend_TaskManagement.Service
             mail.To.Add(email);
             await smtp.SendMailAsync(mail);
         }
+
+
+
         // check email có tồn tại hay không
         public async Task<bool> IsEmailExist(string email)
         {
             return await _context.Users.AnyAsync(u => u.Email == email);
         }
+
+
+
         // Đăng nhập
         public async Task<User?> ValidateUser(string email, string password)
         {

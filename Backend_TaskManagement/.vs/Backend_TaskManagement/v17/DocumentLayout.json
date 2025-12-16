@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|d:\\k\u1EF3_6\\project_intern\\backend_taskmanagement\\controller\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|solutionrelative:controller\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|d:\\k\u1EF3_6\\project_intern\\backend_taskmanagement\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|solutionrelative:service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|d:\\k\u1EF3_6\\project_intern\\backend_taskmanagement\\models\\projecthubcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|solutionrelative:models\\projecthubcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|d:\\k\u1EF3_6\\project_intern\\backend_taskmanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|d:\\k\u1EF3_6\\project_intern\\backend_taskmanagement\\service\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|solutionrelative:service\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|d:\\k\u1EF3_6\\project_intern\\backend_taskmanagement\\controller\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|solutionrelative:controller\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|d:\\k\u1EF3_6\\project_intern\\backend_taskmanagement\\service\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|solutionrelative:service\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|d:\\k\u1EF3_6\\project_intern\\backend_taskmanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|d:\\k\u1EF3_6\\project_intern\\backend_taskmanagement\\service\\igoogleauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,10 +47,6 @@
       "RelativeMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|d:\\k\u1EF3_6\\project_intern\\backend_taskmanagement\\models\\projecthubcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|solutionrelative:models\\projecthubcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|d:\\k\u1EF3_6\\project_intern\\backend_taskmanagement\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7B057D71-160A-4FAF-1B05-B51512899941}|Backend_TaskManagement.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -45,38 +57,85 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 221,
+          "DockedWidth": 199,
           "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GoogleAuthService.cs",
-              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\GoogleAuthService.cs",
-              "RelativeDocumentMoniker": "Service\\GoogleAuthService.cs",
-              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\GoogleAuthService.cs",
-              "RelativeToolTip": "Service\\GoogleAuthService.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBkAAAA+AAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\UserService.cs",
+              "RelativeDocumentMoniker": "Service\\UserService.cs",
+              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\UserService.cs",
+              "RelativeToolTip": "Service\\UserService.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAgwC0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T13:31:58.678Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-25T13:33:40.341Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Controller\\UserController.cs",
+              "RelativeDocumentMoniker": "Controller\\UserController.cs",
+              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Controller\\UserController.cs",
+              "RelativeToolTip": "Controller\\UserController.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAwwGIAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T13:40:50.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\IUserService.cs",
+              "RelativeDocumentMoniker": "Service\\IUserService.cs",
+              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\IUserService.cs",
+              "RelativeToolTip": "Service\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T13:29:01.387Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProjectHubContext.cs",
+              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Models\\ProjectHubContext.cs",
+              "RelativeDocumentMoniker": "Models\\ProjectHubContext.cs",
+              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Models\\ProjectHubContext.cs",
+              "RelativeToolTip": "Models\\ProjectHubContext.cs",
+              "ViewState": "AgIAAKUCAAAAAAAAAAAmwLoCAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T12:40:40.28Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Controller\\AuthController.cs",
               "RelativeDocumentMoniker": "Controller\\AuthController.cs",
               "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Controller\\AuthController.cs",
               "RelativeToolTip": "Controller\\AuthController.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAYwDIAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAzwCUAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T15:09:12.508Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T15:09:12.508Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
+              "Title": "GoogleAuthService.cs",
+              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\GoogleAuthService.cs",
+              "RelativeDocumentMoniker": "Service\\GoogleAuthService.cs",
+              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\GoogleAuthService.cs",
+              "RelativeToolTip": "Service\\GoogleAuthService.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwBkAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T13:31:58.678Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -84,67 +143,14 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-04T12:40:30.295Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ProjectHubContext.cs",
-              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Models\\ProjectHubContext.cs",
-              "RelativeDocumentMoniker": "Models\\ProjectHubContext.cs",
-              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Models\\ProjectHubContext.cs",
-              "RelativeToolTip": "Models\\ProjectHubContext.cs",
-              "ViewState": "AgIAAGsAAAAAAAAAAAAmwEsAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T12:40:40.28Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T12:40:30.295Z"
             }
           ]
         },
         {
-          "DockedWidth": 179,
-          "SelectedChildIndex": 2,
+          "DockedWidth": 201,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Models\\User.cs",
-              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Models\\User.cs",
-              "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAUAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T12:47:15.703Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IGoogleAuthService.cs",
-              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\IGoogleAuthService.cs",
-              "RelativeDocumentMoniker": "Service\\IGoogleAuthService.cs",
-              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\IGoogleAuthService.cs",
-              "RelativeToolTip": "Service\\IGoogleAuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T13:29:06.494Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\AuthService.cs",
-              "RelativeDocumentMoniker": "Service\\AuthService.cs",
-              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\AuthService.cs",
-              "RelativeToolTip": "Service\\AuthService.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAmwD0AAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T14:51:09.432Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 3,
@@ -153,23 +159,58 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADcAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFcAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-04T15:14:38.466Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T12:47:15.703Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IGoogleAuthService.cs",
+              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\IGoogleAuthService.cs",
+              "RelativeDocumentMoniker": "Service\\IGoogleAuthService.cs",
+              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\IGoogleAuthService.cs",
+              "RelativeToolTip": "Service\\IGoogleAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T13:29:06.494Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\AuthService.cs",
+              "RelativeDocumentMoniker": "Service\\AuthService.cs",
+              "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\AuthService.cs",
+              "RelativeToolTip": "Service\\AuthService.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAkwE0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T14:51:09.432Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\IAuthService.cs",
               "RelativeDocumentMoniker": "Service\\IAuthService.cs",
               "ToolTip": "D:\\K\u1EF3_6\\Project_Intern\\Backend_TaskManagement\\Service\\IAuthService.cs",
               "RelativeToolTip": "Service\\IAuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T14:49:03.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T14:49:03.326Z"
             }
           ]
         }

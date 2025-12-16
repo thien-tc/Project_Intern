@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { 
-  Home, 
-  Target, 
-  Clock, 
-  BarChart3, 
-  FileText, 
+import {
+  Home,
+  Target,
+  Clock,
+  BarChart3,
+  FileText,
   Plus,
   ChevronRight,
   Search,
@@ -53,10 +53,10 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
   const navItems = [
     { icon: Home, label: 'Home', path: '/dashboard', active: location.pathname === '/dashboard' },
     { icon: MessageCircle, label: 'Chat', path: '/chat', active: location.pathname === '/chat' },
-    { 
-      icon: Bell, 
-      label: 'Notifications', 
-      path: '/notifications', 
+    {
+      icon: Bell,
+      label: 'Notifications',
+      path: '/notifications',
       badge: 3,
       active: location.pathname === '/notifications'
     },
@@ -67,23 +67,23 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
   ];
 
   const groups = [
-    { 
-      id: 'dev-team', 
-      name: 'Development Team', 
+    {
+      id: 'dev-team',
+      name: 'Development Team',
       memberCount: 5,
       members: ['1', '2'],
       description: 'Frontend & Backend developers working on core features'
     },
-    { 
-      id: 'design-team', 
-      name: 'Design Team', 
+    {
+      id: 'design-team',
+      name: 'Design Team',
       memberCount: 3,
       members: ['3'],
       description: 'UI/UX designers creating amazing user experiences'
     },
-    { 
-      id: 'marketing-team', 
-      name: 'Marketing Team', 
+    {
+      id: 'marketing-team',
+      name: 'Marketing Team',
       memberCount: 2,
       members: ['1'],
       description: 'Marketing specialists driving growth and engagement'
@@ -109,12 +109,12 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
               <p className="text-xs text-muted-foreground">{state.users.length} members</p>
             </div>
           </div>
-          
+
           {/* Search */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input 
-              placeholder="Search spaces, lists..." 
+            <Input
+              placeholder="Search spaces, lists..."
               className="pl-9 h-8 text-sm"
             />
           </div>
@@ -125,21 +125,21 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
           <nav className="p-2">
             {navItems.map((item) => (
               <div key={item.path}>
-                
-                  <Link to={item.path}>
-                    <Button
-                      variant={item.active ? "secondary" : "ghost"}
-                      className="w-full justify-start mb-1 h-8"
-                    >
-                      <item.icon className="mr-3 h-4 w-4" />
-                      <span className="text-sm">{item.label}</span>
-                      {item.badge && (
-                        <Badge variant="secondary" className="ml-auto h-5 px-2 text-xs">
-                          {item.badge}
-                        </Badge>
-                      )}
-                    </Button>
-                  </Link>
+
+                <Link to={item.path}>
+                  <Button
+                    variant={item.active ? "secondary" : "ghost"}
+                    className="w-full justify-start mb-1 h-8"
+                  >
+                    <item.icon className="mr-3 h-4 w-4" />
+                    <span className="text-sm">{item.label}</span>
+                    {item.badge && (
+                      <Badge variant="secondary" className="ml-auto h-5 px-2 text-xs">
+                        {item.badge}
+                      </Badge>
+                    )}
+                  </Button>
+                </Link>
 
               </div>
             ))}
@@ -151,20 +151,20 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
               <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                 Groups
               </span>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 className="h-6 w-6 p-0"
                 onClick={() => setIsCreateGroupOpen(true)}
               >
                 <Plus className="h-3 w-3" />
               </Button>
             </div>
-            
+
             {groups.map((group) => (
-              <Button 
+              <Button
                 key={group.id}
-                variant="ghost" 
+                variant="ghost"
                 className="w-full justify-start h-8 text-sm"
                 onClick={() => onGroupClick?.(group.id)}
               >
@@ -187,7 +187,7 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
                 <Plus className="h-3 w-3" />
               </Button>
             </div>
-            
+
             {state.projects.map((project) => (
               <div key={project.id}>
                 <Link to="/tasks">
@@ -196,13 +196,12 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
                     className="w-full justify-start h-8 text-sm"
                     onClick={() => toggleSection(`project-${project.id}`)}
                   >
-                    <ChevronRight 
-                      className={`mr-2 h-3 w-3 transition-transform ${
-                        expandedSections.includes(`project-${project.id}`) ? 'rotate-90' : ''
-                      }`} 
+                    <ChevronRight
+                      className={`mr-2 h-3 w-3 transition-transform ${expandedSections.includes(`project-${project.id}`) ? 'rotate-90' : ''
+                        }`}
                     />
-                    <div 
-                      className="w-2 h-2 rounded-full mr-2" 
+                    <div
+                      className="w-2 h-2 rounded-full mr-2"
                       style={{ backgroundColor: project.color }}
                     />
                     {project.name}
@@ -218,17 +217,17 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
               <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                 Team Members
               </span>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 className="h-6 w-6 p-0"
                 onClick={() => onChatOpen?.()}
               >
                 <MessageCircle className="h-3 w-3" />
               </Button>
             </div>
-            
-            {state.users.filter(user => user.id !== state.currentUser.id).map((user) => (
+
+            {state.users.filter(user => user.id !== state.currentUser?.id).map((user) => (
               <Button
                 key={user.id}
                 variant="ghost"

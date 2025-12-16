@@ -145,3 +145,4 @@ D:\Kỳ_6\Project_Intern\Backend_TaskManagement\bin\Debug\net8.0\Google.Apis.Cor
 D:\Kỳ_6\Project_Intern\Backend_TaskManagement\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\Kỳ_6\Project_Intern\Backend_TaskManagement\bin\Debug\net8.0\System.Management.dll
 D:\Kỳ_6\Project_Intern\Backend_TaskManagement\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Management.dll
+D:\Kỳ_6\Project_Intern\Backend_TaskManagement\bin\Debug\net8.0\Backend_TaskManagement.staticwebassets.runtime.json

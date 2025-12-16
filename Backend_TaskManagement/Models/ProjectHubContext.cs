@@ -693,7 +693,7 @@ public partial class ProjectHubContext : DbContext
             entity.HasIndex(e => e.Email, "UQ__Users__A9D10534017566CC").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("UserID");
-            entity.Property(e => e.AvatarUrl).HasMaxLength(255);
+            entity.Property(e => e.AvatarUrl).IsUnicode(true);
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
