@@ -32,7 +32,7 @@ export default function Analytics() {
   }));
 
   return (
-    <MainLayout 
+    <MainLayout
       title="Analytics"
       subtitle="Track your team's performance and productivity."
     >
@@ -112,8 +112,8 @@ export default function Analytics() {
                     <span className="capitalize">{priority}</span>
                     <span>{count} tasks</span>
                   </div>
-                  <Progress 
-                    value={totalTasks > 0 ? (count / totalTasks) * 100 : 0} 
+                  <Progress
+                    value={totalTasks > 0 ? (count / totalTasks) * 100 : 0}
                     className="h-2"
                   />
                 </div>
@@ -133,8 +133,8 @@ export default function Analytics() {
                     <span className="capitalize">{status.replace('_', ' ')}</span>
                     <span>{count} tasks</span>
                   </div>
-                  <Progress 
-                    value={totalTasks > 0 ? (count / totalTasks) * 100 : 0} 
+                  <Progress
+                    value={totalTasks > 0 ? (count / totalTasks) * 100 : 0}
                     className="h-2"
                   />
                 </div>
@@ -153,8 +153,8 @@ export default function Analytics() {
               {userTaskCounts.map(({ user, taskCount }) => (
                 <div key={user.id} className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
                   <div className="flex items-center gap-3">
-                    <img 
-                      src={user.avatar} 
+                    <img
+                      src={user.avatar}
                       alt={user.name}
                       className="w-8 h-8 rounded-full"
                     />

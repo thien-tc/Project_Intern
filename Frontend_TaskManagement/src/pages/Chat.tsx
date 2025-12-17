@@ -6,9 +6,9 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  MessageCircle, 
-  Send, 
+import {
+  MessageCircle,
+  Send,
   Phone,
   Video,
   MoreHorizontal,
@@ -125,7 +125,7 @@ export default function Chat() {
 
   const sendMessage = () => {
     if (!message.trim() || !selectedChat) return;
-    
+
     console.log('Sending message:', message);
     setMessage('');
   };
@@ -142,10 +142,10 @@ export default function Chat() {
   };
 
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('vi-VN', { 
-      hour: '2-digit', 
+    return date.toLocaleTimeString('vi-VN', {
+      hour: '2-digit',
       minute: '2-digit',
-      hour12: false 
+      hour12: false
     });
   };
 
@@ -153,11 +153,11 @@ export default function Chat() {
     const now = new Date();
     const diff = now.getTime() - date.getTime();
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    
+
     if (days === 0) return 'Hôm nay';
     if (days === 1) return 'Hôm qua';
     if (days < 7) return `${days} ngày trước`;
-    
+
     return date.toLocaleDateString('vi-VN');
   };
 
@@ -168,7 +168,7 @@ export default function Chat() {
   );
 
   return (
-    <MainLayout 
+    <MainLayout
       title="Chat"
       subtitle="Giao tiếp với nhóm và thành viên"
     >
@@ -179,8 +179,8 @@ export default function Chat() {
           <div className="p-4 border-b border-border">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input 
-                placeholder="Tìm kiếm cuộc trò chuyện..." 
+              <Input
+                placeholder="Tìm kiếm cuộc trò chuyện..."
                 className="pl-9"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -201,8 +201,8 @@ export default function Chat() {
                 <div className="p-2">
                   {filteredChats.map((chat) => {
                     const isGroup = chat.type === 'group';
-                    const otherUser = isGroup ? null : getUser(chat.participants.find(id => id !== state.currentUser.id)!);
-                    
+                    const otherUser = isGroup ? null : getUser(chat.participants.find(id => id !== state.currentUser?.id)!);
+
                     return (
                       <Button
                         key={chat.id}
@@ -223,7 +223,7 @@ export default function Chat() {
                               <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-background" />
                             )}
                           </div>
-                          
+
                           <div className="flex-1 text-left">
                             <div className="flex items-center justify-between">
                               <span className="font-medium text-sm">{chat.name}</span>
@@ -231,7 +231,7 @@ export default function Chat() {
                                 {chat.lastMessage && formatTime(chat.lastMessage.timestamp)}
                               </span>
                             </div>
-                            
+
                             <div className="flex items-center justify-between mt-1">
                               <p className="text-xs text-muted-foreground truncate max-w-[180px]">
                                 {chat.lastMessage?.content || 'Chưa có tin nhắn'}
@@ -265,7 +265,7 @@ export default function Chat() {
                         <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                           <Users className="h-5 w-5 text-primary-foreground" />
                         </div>
-                        
+
                         <div className="flex-1 text-left">
                           <div className="flex items-center justify-between">
                             <span className="font-medium text-sm">{chat.name}</span>
@@ -273,7 +273,7 @@ export default function Chat() {
                               {chat.lastMessage && formatTime(chat.lastMessage.timestamp)}
                             </span>
                           </div>
-                          
+
                           <div className="flex items-center justify-between mt-1">
                             <p className="text-xs text-muted-foreground truncate max-w-[180px]">
                               {chat.participants.length} thành viên
@@ -296,8 +296,8 @@ export default function Chat() {
               <ScrollArea className="h-full">
                 <div className="p-2">
                   {filteredChats.filter(chat => chat.type === 'direct').map((chat) => {
-                    const otherUser = getUser(chat.participants.find(id => id !== state.currentUser.id)!);
-                    
+                    const otherUser = getUser(chat.participants.find(id => id !== state.currentUser?.id)!);
+
                     return (
                       <Button
                         key={chat.id}
@@ -312,7 +312,7 @@ export default function Chat() {
                               <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-background" />
                             )}
                           </div>
-                          
+
                           <div className="flex-1 text-left">
                             <div className="flex items-center justify-between">
                               <span className="font-medium text-sm">{otherUser?.name}</span>
@@ -320,7 +320,7 @@ export default function Chat() {
                                 {chat.lastMessage && formatTime(chat.lastMessage.timestamp)}
                               </span>
                             </div>
-                            
+
                             <div className="flex items-center justify-between mt-1">
                               <p className="text-xs text-muted-foreground truncate max-w-[180px]">
                                 {chat.lastMessage?.content || 'Chưa có tin nhắn'}
@@ -356,24 +356,24 @@ export default function Chat() {
                           <Users className="h-5 w-5 text-primary-foreground" />
                         </div>
                       ) : (
-                        <UserAvatar user={getUser(selectedChatData.participants.find(id => id !== state.currentUser.id)!)!} size="md" />
+                        <UserAvatar user={getUser(selectedChatData.participants.find(id => id !== state.currentUser?.id)!)!} size="md" />
                       )}
                       {selectedChatData.type === 'direct' && selectedChatData.isOnline && (
                         <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-background" />
                       )}
                     </div>
-                    
+
                     <div>
                       <h3 className="font-semibold">{selectedChatData.name}</h3>
                       <p className="text-sm text-muted-foreground">
-                        {selectedChatData.type === 'group' 
+                        {selectedChatData.type === 'group'
                           ? `${selectedChatData.participants.length} thành viên`
                           : selectedChatData.isOnline ? 'Đang hoạt động' : 'Offline'
                         }
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-2">
                     <Button variant="ghost" size="sm">
                       <Phone className="h-4 w-4" />
@@ -393,11 +393,11 @@ export default function Chat() {
                 <div className="space-y-4">
                   {messages.map(msg => {
                     const user = getUser(msg.senderId);
-                    const isCurrentUser = msg.senderId === state.currentUser.id;
-                    
+                    const isCurrentUser = msg.senderId === state.currentUser?.id;
+
                     return (
-                      <div 
-                        key={msg.id} 
+                      <div
+                        key={msg.id}
                         className={`flex gap-3 ${isCurrentUser ? 'flex-row-reverse' : ''}`}
                       >
                         <UserAvatar user={user!} size="sm" />
@@ -408,11 +408,10 @@ export default function Chat() {
                               {formatTime(msg.timestamp)}
                             </span>
                           </div>
-                          <div className={`inline-block p-3 rounded-lg text-sm ${
-                            isCurrentUser 
-                              ? 'bg-primary text-primary-foreground' 
-                              : 'bg-muted'
-                          }`}>
+                          <div className={`inline-block p-3 rounded-lg text-sm ${isCurrentUser
+                            ? 'bg-primary text-primary-foreground'
+                            : 'bg-muted'
+                            }`}>
                             {msg.content}
                           </div>
                         </div>

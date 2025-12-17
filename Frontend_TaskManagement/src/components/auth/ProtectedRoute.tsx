@@ -31,7 +31,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
     );
   }
   // Redirect to landing page if not aithenticated
-  if(!isAuthenticated) {
+  if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
 

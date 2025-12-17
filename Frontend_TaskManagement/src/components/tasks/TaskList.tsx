@@ -3,19 +3,18 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
-import { 
-  MoreHorizontal, 
-  Calendar, 
-  MessageCircle, 
-  Paperclip, 
+import {
+  MoreHorizontal,
+  Calendar,
+  MessageCircle,
+  Paperclip,
   Flag,
   Clock,
   Plus
 } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import { UserAvatar } from '@/components/common/UserAvatar';
-import { PriorityBadge } from '@/components/common/PriorityBadge';
-import { StatusBadge } from '@/components/common/StatusBadge';
+
 import type { Task } from '@/services/mockData';
 
 interface TaskListProps {
@@ -27,8 +26,8 @@ export function TaskList({ onTaskClick }: TaskListProps) {
   const [selectedTasks, setSelectedTasks] = useState<string[]>([]);
 
   const toggleTaskSelection = (taskId: string) => {
-    setSelectedTasks(prev => 
-      prev.includes(taskId) 
+    setSelectedTasks(prev =>
+      prev.includes(taskId)
         ? prev.filter(id => id !== taskId)
         : [...prev, taskId]
     );
@@ -46,7 +45,7 @@ export function TaskList({ onTaskClick }: TaskListProps) {
   };
 
   const getAssignedUsers = (task: Task) => {
-    return task.assignees.map(id => 
+    return task.assignees.map(id =>
       state.users.find(user => user.id === id)
     ).filter(Boolean);
   };
@@ -65,13 +64,12 @@ export function TaskList({ onTaskClick }: TaskListProps) {
           const assignedUsers = getAssignedUsers(task);
           const completedSubtasks = task.subtasks.filter(st => st.completed).length;
           const totalSubtasks = task.subtasks.length;
-          
+
           return (
-            <Card 
-              key={task.id} 
-              className={`hover:shadow-sm transition-shadow cursor-pointer group ${
-                selectedTasks.includes(task.id) ? 'ring-2 ring-primary' : ''
-              }`}
+            <Card
+              key={task.id}
+              className={`hover:shadow-sm transition-shadow cursor-pointer group ${selectedTasks.includes(task.id) ? 'ring-2 ring-primary' : ''
+                }`}
               onClick={() => onTaskClick(task)}
             >
               <CardContent className="p-4">
@@ -86,17 +84,16 @@ export function TaskList({ onTaskClick }: TaskListProps) {
                   {/* Task Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-2">
-                      <h4 className={`font-medium text-sm ${
-                        task.status === 'completed' ? 'line-through text-muted-foreground' : ''
-                      }`}>
+                      <h4 className={`font-medium text-sm ${task.status === 'completed' ? 'line-through text-muted-foreground' : ''
+                        }`}>
                         {task.title}
                       </h4>
-                      
+
                       {/* Priority */}
-                      <PriorityBadge priority={task.priority} showIcon={false} />
-                      
+                      {/* <PriorityBadge priority={task.priority} showIcon={false} /> */}
+
                       {/* Status */}
-                      <StatusBadge status={task.status} showIcon={false} />
+                      {/* <StatusBadge status={task.status} showIcon={false} /> */}
                     </div>
 
                     {/* Task Meta */}
@@ -169,9 +166,9 @@ export function TaskList({ onTaskClick }: TaskListProps) {
                   </div>
 
                   {/* Actions */}
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     className="h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
                     onClick={(e) => e.stopPropagation()}
                   >

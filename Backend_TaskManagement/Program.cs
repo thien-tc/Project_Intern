@@ -82,6 +82,10 @@ builder.Services.AddHttpClient();
 builder.Services.AddMemoryCache();
 // Đăng ký dịch vụ UserService
 builder.Services.AddScoped<IUserService, UserService>();
+// Đăng ký dịch vụ WorkspaceService
+builder.Services.AddScoped<IWorkspaceService, WorkspaceService>();
+// Đăng ký dịch vụ SpaceService
+builder.Services.AddScoped<ISpaceService, SpaceService>();
 
 var app = builder.Build();
 

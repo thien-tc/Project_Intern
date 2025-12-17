@@ -14,33 +14,18 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { UserAvatar } from '@/components/common/UserAvatar';
-import { CreateGroupDialog } from '@/components/groups/CreateGroupDialog';
 import { useApp } from '@/context/AppContext';
 import { Link, useLocation } from 'react-router-dom';
-
-interface Group {
-  id: string;
-  name: string;
-  description: string;
-  color: string;
-  privacy: 'public' | 'private';
-  inviteEmails: string[];
-  memberCount: number;
-  members: string[];
-  createdAt: string;
-}
 
 interface SidebarProps {
   onGroupClick?: (groupId: string) => void;
   onChatOpen?: (userId?: string, isGroup?: boolean) => void;
 }
 
-export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
+export function Sidebar({ }: SidebarProps) {
   const { state } = useApp();
   const location = useLocation();
   const [expandedSections, setExpandedSections] = useState<string[]>(['spaces']);
-  const [isCreateGroupOpen, setIsCreateGroupOpen] = useState(false);
 
   const toggleSection = (section: string) => {
     setExpandedSections(prev =>
@@ -63,37 +48,9 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
     { icon: Target, label: 'Goals', path: '/goals' },
     { icon: Clock, label: 'Time Tracking', path: '/time-tracking', active: location.pathname === '/time-tracking' },
     { icon: BarChart3, label: 'Analytics', path: '/analytics', active: location.pathname === '/analytics' },
-    { icon: FileText, label: 'Reports', path: '/reports' },
   ];
 
-  const groups = [
-    {
-      id: 'dev-team',
-      name: 'Development Team',
-      memberCount: 5,
-      members: ['1', '2'],
-      description: 'Frontend & Backend developers working on core features'
-    },
-    {
-      id: 'design-team',
-      name: 'Design Team',
-      memberCount: 3,
-      members: ['3'],
-      description: 'UI/UX designers creating amazing user experiences'
-    },
-    {
-      id: 'marketing-team',
-      name: 'Marketing Team',
-      memberCount: 2,
-      members: ['1'],
-      description: 'Marketing specialists driving growth and engagement'
-    }
-  ];
 
-  const handleGroupCreated = (newGroup: Group) => {
-    console.log('New group created:', newGroup);
-    // Here you would typically dispatch an action to add the group to state
-  };
 
   return (
     <>
@@ -125,7 +82,6 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
           <nav className="p-2">
             {navItems.map((item) => (
               <div key={item.path}>
-
                 <Link to={item.path}>
                   <Button
                     variant={item.active ? "secondary" : "ghost"}
@@ -140,44 +96,11 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
                     )}
                   </Button>
                 </Link>
-
               </div>
             ))}
           </nav>
 
-          {/* Groups */}
-          <div className="px-2 py-2">
-            <div className="flex items-center justify-between px-2 py-1">
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                Groups
-              </span>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-6 w-6 p-0"
-                onClick={() => setIsCreateGroupOpen(true)}
-              >
-                <Plus className="h-3 w-3" />
-              </Button>
-            </div>
-
-            {groups.map((group) => (
-              <Button
-                key={group.id}
-                variant="ghost"
-                className="w-full justify-start h-8 text-sm"
-                onClick={() => onGroupClick?.(group.id)}
-              >
-                <MessageCircle className="mr-2 h-3 w-3" />
-                {group.name}
-                <Badge variant="secondary" className="ml-auto h-4 px-1 text-xs">
-                  {group.memberCount}
-                </Badge>
-              </Button>
-            ))}
-          </div>
-
-          {/* Spaces */}
+          {/* Spaces (Real Data) */}
           <div className="px-2 py-2">
             <div className="flex items-center justify-between px-2 py-1">
               <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
@@ -209,46 +132,16 @@ export function Sidebar({ onGroupClick, onChatOpen }: SidebarProps) {
                 </Link>
               </div>
             ))}
-          </div>
 
-          {/* Team Members */}
-          <div className="px-2 py-2">
-            <div className="flex items-center justify-between px-2 py-1">
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                Team Members
-              </span>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-6 w-6 p-0"
-                onClick={() => onChatOpen?.()}
-              >
-                <MessageCircle className="h-3 w-3" />
-              </Button>
-            </div>
-
-            {state.users.filter(user => user.id !== state.currentUser?.id).map((user) => (
-              <Button
-                key={user.id}
-                variant="ghost"
-                className="w-full justify-start h-8 text-sm"
-                onClick={() => onChatOpen?.(user.id, false)}
-              >
-                <UserAvatar user={user} size="sm" />
-                <span className="ml-2 truncate">{user.name}</span>
-                <div className="ml-auto w-2 h-2 bg-green-500 rounded-full" />
-              </Button>
-            ))}
+            {state.projects.length === 0 && (
+              <div className="px-4 py-2 text-xs text-muted-foreground">
+                No spaces found.
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Create Group Dialog */}
-      <CreateGroupDialog
-        isOpen={isCreateGroupOpen}
-        onClose={() => setIsCreateGroupOpen(false)}
-        onGroupCreated={handleGroupCreated}
-      />
     </>
   );
 }

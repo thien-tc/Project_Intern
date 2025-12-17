@@ -7,11 +7,11 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { 
-  UserPlus, 
-  Mail, 
-  User, 
-  X, 
+import {
+  UserPlus,
+  Mail,
+  User,
+  X,
   Search,
   Check,
   AlertCircle
@@ -43,11 +43,11 @@ interface SearchResult {
   isAlreadyMember: boolean;
 }
 
-export function InviteMemberDialog({ 
-  isOpen, 
-  onClose, 
-  groupId, 
-  groupName 
+export function InviteMemberDialog({
+  isOpen,
+  onClose,
+  groupId,
+  groupName
 }: InviteMemberDialogProps) {
   const { state } = useApp();
   const [inviteList, setInviteList] = useState<InviteData[]>([]);
@@ -65,7 +65,7 @@ export function InviteMemberDialog({
     }
 
     setIsSearching(true);
-    
+
     // Simulate API delay
     setTimeout(() => {
       const mockResults: SearchResult[] = [
@@ -90,12 +90,12 @@ export function InviteMemberDialog({
           username: 'carol_b',
           isAlreadyMember: false
         }
-      ].filter(user => 
+      ].filter(user =>
         user.name.toLowerCase().includes(query.toLowerCase()) ||
         user.email.toLowerCase().includes(query.toLowerCase()) ||
         user.username.toLowerCase().includes(query.toLowerCase())
       );
-      
+
       setSearchResults(mockResults);
       setIsSearching(false);
     }, 500);
@@ -151,7 +151,7 @@ export function InviteMemberDialog({
 
     // Here you would typically send the invites via API
     console.log('Sending invites:', inviteList);
-    
+
     // Show success message and close dialog
     alert(`Sent ${inviteList.length} invite(s) to ${groupName}!`);
     setInviteList([]);
@@ -159,7 +159,7 @@ export function InviteMemberDialog({
   };
 
   const updateRole = (identifier: string, role: UserRole) => {
-    setInviteList(inviteList.map(invite => 
+    setInviteList(inviteList.map(invite =>
       invite.identifier === identifier ? { ...invite, role } : invite
     ));
   };
@@ -206,15 +206,12 @@ export function InviteMemberDialog({
                     <CardContent className="p-3">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <UserAvatar 
+                          <UserAvatar
                             user={{
-                              id: user.id,
                               name: user.name,
-                              email: user.email,
                               avatar: user.avatar || '/default-avatar.png',
-                              role: 'member'
-                            }} 
-                            size="sm" 
+                            }}
+                            size="sm"
                           />
                           <div>
                             <p className="font-medium text-sm">{user.name}</p>
@@ -223,13 +220,13 @@ export function InviteMemberDialog({
                             </p>
                           </div>
                         </div>
-                        
+
                         <div className="flex items-center gap-2">
                           {user.isAlreadyMember ? (
                             <Badge variant="secondary">Already Member</Badge>
                           ) : (
-                            <Button 
-                              size="sm" 
+                            <Button
+                              size="sm"
                               onClick={() => handleAddFromSearch(user)}
                             >
                               <UserPlus className="h-3 w-3 mr-1" />
@@ -273,7 +270,7 @@ export function InviteMemberDialog({
                     <span>Username: 3-20 characters, letters, numbers, underscore</span>
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label>Role</Label>
                   <Select value={selectedRole} onValueChange={(value: UserRole) => setSelectedRole(value)}>
@@ -289,7 +286,7 @@ export function InviteMemberDialog({
                 </div>
               </div>
 
-              <Button 
+              <Button
                 onClick={handleAddByInput}
                 disabled={!currentInput.trim() || (!isValidEmail(currentInput) && !isValidUsername(currentInput))}
                 className="w-full"
@@ -315,8 +312,8 @@ export function InviteMemberDialog({
               <Label className="text-base font-semibold">
                 Pending Invites ({inviteList.length})
               </Label>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="sm"
                 onClick={() => setInviteList([])}
               >
@@ -331,8 +328,8 @@ export function InviteMemberDialog({
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
-                          {invite.type === 'email' ? 
-                            <Mail className="h-4 w-4" /> : 
+                          {invite.type === 'email' ?
+                            <Mail className="h-4 w-4" /> :
                             <User className="h-4 w-4" />
                           }
                         </div>
@@ -343,10 +340,10 @@ export function InviteMemberDialog({
                           </p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center gap-2">
-                        <Select 
-                          value={invite.role} 
+                        <Select
+                          value={invite.role}
                           onValueChange={(value: UserRole) => updateRole(invite.identifier, value)}
                         >
                           <SelectTrigger className="w-24 h-8">
@@ -358,7 +355,7 @@ export function InviteMemberDialog({
                             <SelectItem value="admin">Admin</SelectItem>
                           </SelectContent>
                         </Select>
-                        
+
                         <Button
                           variant="ghost"
                           size="sm"
@@ -380,7 +377,7 @@ export function InviteMemberDialog({
           <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
-          <Button 
+          <Button
             onClick={handleSendInvites}
             disabled={inviteList.length === 0}
             className="gap-2"

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import type { Task } from '@/services/mockData';
-import { PriorityBadge } from '@/components/common/PriorityBadge';
+
 
 interface TaskCalendarProps {
   onTaskClick: (task: Task) => void;
@@ -23,25 +23,25 @@ export function TaskCalendar({ onTaskClick }: TaskCalendarProps) {
     const startingDayOfWeek = firstDay.getDay();
 
     const days = [];
-    
+
     // Add empty cells for days before the first day of the month
     for (let i = 0; i < startingDayOfWeek; i++) {
       days.push(null);
     }
-    
+
     // Add all days of the month
     for (let day = 1; day <= daysInMonth; day++) {
       days.push(new Date(year, month, day));
     }
-    
+
     return days;
   };
 
   const getTasksForDate = (date: Date | null) => {
     if (!date) return [];
-    
+
     const dateStr = date.toISOString().split('T')[0];
-    return state.tasks.filter(task => 
+    return state.tasks.filter(task =>
       task.dueDate === dateStr || task.startDate === dateStr
     );
   };
@@ -81,7 +81,7 @@ export function TaskCalendar({ onTaskClick }: TaskCalendarProps) {
             <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
-        
+
         <Button className="gap-2">
           <Plus className="h-4 w-4" />
           Add Task
@@ -100,24 +100,22 @@ export function TaskCalendar({ onTaskClick }: TaskCalendarProps) {
         {/* Calendar Days */}
         {days.map((date, index) => {
           const tasks = getTasksForDate(date);
-          const isToday = date && 
+          const isToday = date &&
             date.toDateString() === new Date().toDateString();
-          
+
           return (
-            <div 
+            <div
               key={index}
-              className={`bg-background min-h-[120px] p-2 ${
-                date ? 'hover:bg-muted/50 cursor-pointer' : ''
-              } ${isToday ? 'ring-2 ring-primary' : ''}`}
+              className={`bg-background min-h-[120px] p-2 ${date ? 'hover:bg-muted/50 cursor-pointer' : ''
+                } ${isToday ? 'ring-2 ring-primary' : ''}`}
             >
               {date && (
                 <>
-                  <div className={`text-sm font-medium mb-2 ${
-                    isToday ? 'text-primary' : 'text-foreground'
-                  }`}>
+                  <div className={`text-sm font-medium mb-2 ${isToday ? 'text-primary' : 'text-foreground'
+                    }`}>
                     {date.getDate()}
                   </div>
-                  
+
                   <div className="space-y-1">
                     {tasks.slice(0, 3).map(task => (
                       <div
@@ -126,16 +124,15 @@ export function TaskCalendar({ onTaskClick }: TaskCalendarProps) {
                         onClick={() => onTaskClick(task)}
                       >
                         <div className="flex items-center gap-1">
-                          <div className={`w-2 h-2 rounded-full ${
-                            task.priority === 'urgent' ? 'bg-red-500' :
+                          <div className={`w-2 h-2 rounded-full ${task.priority === 'urgent' ? 'bg-red-500' :
                             task.priority === 'high' ? 'bg-orange-500' :
-                            task.priority === 'normal' ? 'bg-blue-500' : 'bg-gray-500'
-                          }`} />
+                              task.priority === 'normal' ? 'bg-blue-500' : 'bg-gray-500'
+                            }`} />
                           <span className="truncate">{task.title}</span>
                         </div>
                       </div>
                     ))}
-                    
+
                     {tasks.length > 3 && (
                       <div className="text-xs text-muted-foreground">
                         +{tasks.length - 3} more

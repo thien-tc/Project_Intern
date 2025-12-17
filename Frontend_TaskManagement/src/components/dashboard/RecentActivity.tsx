@@ -1,13 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { UserAvatar } from '@/components/common/UserAvatar';
-import { PriorityBadge } from '@/components/common/PriorityBadge';
+// import { PriorityBadge } from '@/components/common/PriorityBadge';
 import { useApp } from '@/context/AppContext';
 import { formatDistanceToNow } from 'date-fns';
 
 export function RecentActivity() {
   const { state } = useApp();
-  
+
   const getUser = (userId: string) => {
     return state.users.find(user => user.id === userId);
   };
@@ -24,15 +24,15 @@ export function RecentActivity() {
           <Button variant="ghost" size="sm">View Task</Button>
         </div>
       </CardHeader>
-      
+
       <CardContent>
         <div className="space-y-4">
           {state.activities.slice(0, 5).map((activity) => {
             const user = getUser(activity.userId);
             const task = getTask(activity.taskId);
-            
+
             if (!user || !task) return null;
-            
+
             return (
               <div key={activity.id} className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
                 <UserAvatar user={user} size="sm" />
@@ -43,7 +43,7 @@ export function RecentActivity() {
                   </div>
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <span>{formatDistanceToNow(new Date(activity.timestamp), { addSuffix: true })}</span>
-                    {activity.priority && <PriorityBadge priority={activity.priority} showIcon={false} />}
+                    {/* {activity.priority && <PriorityBadge priority={activity.priority} showIcon={false} />} */}
                   </div>
                 </div>
               </div>

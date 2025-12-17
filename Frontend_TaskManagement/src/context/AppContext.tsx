@@ -1,20 +1,13 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import { userApi } from '../api/userApi'; 
-import { 
-  mockTasks, 
-  mockProjects, 
-  mockUsers, 
-  mockGoals, 
-  mockTimeEntries,
-  mockActivities 
-} from '../services/mockData';
-import type { 
+import { userApi } from '../api/userApi';
+import { workspaceApi } from '../api/workspaceApi';
+import type {
   Task,
-  Project, 
-  User, 
-  Goal, 
-  TimeEntry, 
-  Activity 
+  Project,
+  User,
+  Goal,
+  TimeEntry,
+  Activity
 
 } from '../services/mockData';
 
@@ -35,7 +28,7 @@ interface AppState {
   trackingStartTime: Date | null;
 }
 
-type AppAction = 
+type AppAction =
   | { type: 'SET_CURRENT_USER'; payload: User | null }
   | { type: 'SET_THEME'; payload: Theme }
   | { type: 'ADD_TASK'; payload: Task }
@@ -45,17 +38,18 @@ type AppAction =
   | { type: 'START_TIME_TRACKING'; payload: { taskId: string } }
   | { type: 'STOP_TIME_TRACKING' }
   | { type: 'ADD_TIME_ENTRY'; payload: TimeEntry }
-  | { type: 'UPDATE_USER'; payload: User};
+  | { type: 'UPDATE_USER'; payload: User }
+  | { type: 'SET_PROJECTS'; payload: Project[] };
 
 const initialState: AppState = {
   theme: 'system',
   currentUser: null,
-  tasks: mockTasks,
-  projects: mockProjects,
-  users: mockUsers,
-  goals: mockGoals,
-  timeEntries: mockTimeEntries,
-  activities: mockActivities,
+  tasks: [],
+  projects: [],
+  users: [],
+  goals: [],
+  timeEntries: [],
+  activities: [],
   selectedProject: null,
   isTimeTracking: false,
   currentTrackingTask: null,
@@ -69,10 +63,10 @@ function appReducer(state: AppState, action: AppAction): AppState {
 
     case 'SET_THEME':
       return { ...state, theme: action.payload };
-    
+
     case 'ADD_TASK':
-      return { 
-        ...state, 
+      return {
+        ...state,
         tasks: [...state.tasks, action.payload],
         activities: [
           {
@@ -87,7 +81,7 @@ function appReducer(state: AppState, action: AppAction): AppState {
           ...state.activities
         ]
       };
-    
+
     case 'UPDATE_TASK':
       return {
         ...state,
@@ -97,16 +91,16 @@ function appReducer(state: AppState, action: AppAction): AppState {
             : task
         )
       };
-    
+
     case 'DELETE_TASK':
       return {
         ...state,
         tasks: state.tasks.filter(task => task.id !== action.payload)
       };
-    
+
     case 'SET_SELECTED_PROJECT':
       return { ...state, selectedProject: action.payload };
-    
+
     case 'START_TIME_TRACKING':
       return {
         ...state,
@@ -114,7 +108,7 @@ function appReducer(state: AppState, action: AppAction): AppState {
         currentTrackingTask: action.payload.taskId,
         trackingStartTime: new Date()
       };
-    
+
     case 'STOP_TIME_TRACKING':
       return {
         ...state,
@@ -122,7 +116,7 @@ function appReducer(state: AppState, action: AppAction): AppState {
         currentTrackingTask: null,
         trackingStartTime: null
       };
-    
+
     case 'ADD_TIME_ENTRY':
       return {
         ...state,
@@ -135,8 +129,11 @@ function appReducer(state: AppState, action: AppAction): AppState {
         users: state.users.map(user =>
           user.id === action.payload.id ? action.payload : user
         )
-      }
-    
+      };
+
+    case 'SET_PROJECTS':
+      return { ...state, projects: action.payload };
+
     default:
       return state;
   }
@@ -153,7 +150,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   // Apply theme to document
   useEffect(() => {
     const root = document.documentElement;
-    
+
     if (state.theme === 'system') {
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       root.classList.toggle('dark', systemTheme === 'dark');
@@ -166,11 +163,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem('token');
-      if(token){
-        try{
+      if (token) {
+        try {
           const response = await userApi.getProfile();
           const userData = response.data;
-          
+
           // Map data từ backend về format User của fontend
           const user: User = {
             id: userData.id,
@@ -180,12 +177,46 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
             role: userData.role || 'Member',
           };
           dispatch({ type: 'SET_CURRENT_USER', payload: user });
-        }catch(error){
+        } catch (error) {
           console.error(error);
         }
       }
     }
     fetchUser();
+  }, []);
+
+  // Fetch Workspaces (Mapped to Projects)
+  useEffect(() => {
+    const fetchWorkspaces = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const response = await workspaceApi.getMyWorkspaces();
+          const workspaces = response.data;
+          if (workspaces && workspaces.length > 0) {
+            // Use the first workspace for now
+            const firstWorkspace = workspaces[0];
+            if (firstWorkspace.spaces) {
+              const mappedProjects: Project[] = firstWorkspace.spaces.map((space: any) => ({
+                id: space.spaceId.toString(),
+                name: space.name,
+                description: space.description || '',
+                color: space.color || '#808080',
+                members: [], // Phase 2: fetch members
+                lists: [],   // Phase 2: fetch lists
+                progress: 0,
+                totalTasks: 0,
+                completedTasks: 0
+              }));
+              dispatch({ type: 'SET_PROJECTS', payload: mappedProjects });
+            }
+          }
+        } catch (error) {
+          console.error("Failed to fetch workspaces", error);
+        }
+      }
+    };
+    fetchWorkspaces();
   }, []);
 
   return (

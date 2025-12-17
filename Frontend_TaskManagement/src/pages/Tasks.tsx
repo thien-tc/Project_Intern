@@ -17,7 +17,7 @@ export default function Tasks() {
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [selectedGroupId, setSelectedGroupId] = useState<string>('');
   const [isGroupInfoOpen, setIsGroupInfoOpen] = useState(false);
-  const [chatRecipient, setChatRecipient] = useState<{id: string, isGroup: boolean, name: string} | null>(null);
+  const [chatRecipient, setChatRecipient] = useState<{ id: string, isGroup: boolean, name: string } | null>(null);
 
   const handleTaskClick = (task: Task) => {
     setSelectedTask(task);
@@ -41,20 +41,20 @@ export default function Tasks() {
   };
 
   const handleChatWithGroup = () => {
-    setChatRecipient({ 
-      id: selectedGroupId, 
-      isGroup: true, 
-      name: getGroupName(selectedGroupId) 
+    setChatRecipient({
+      id: selectedGroupId,
+      isGroup: true,
+      name: getGroupName(selectedGroupId)
     });
     setIsGroupInfoOpen(false);
     setIsChatOpen(true);
   };
 
   const handleChatWithMember = (userId: string) => {
-    setChatRecipient({ 
-      id: userId, 
-      isGroup: false, 
-      name: 'Member Chat' 
+    setChatRecipient({
+      id: userId,
+      isGroup: false,
+      name: 'Member Chat'
     });
     setIsGroupInfoOpen(false);
     setIsChatOpen(true);
@@ -88,18 +88,18 @@ export default function Tasks() {
 
   return (
     <div className="flex h-screen bg-background">
-      <Sidebar 
+      <Sidebar
         onGroupClick={handleGroupClick}
         onChatOpen={handleChatOpen}
       />
-      
+
       <div className="flex-1 flex flex-col overflow-hidden">
-        <ProjectHeader 
+        <ProjectHeader
           currentView={currentView}
           onViewChange={setCurrentView}
           onChatOpen={() => setIsChatOpen(true)}
         />
-        
+
         <main className="flex-1 overflow-y-auto p-6">
           {renderView()}
         </main>
@@ -115,7 +115,7 @@ export default function Tasks() {
       />
 
       {/* Chat Popup */}
-      <ChatPopup 
+      <ChatPopup
         isOpen={isChatOpen}
         onClose={() => setIsChatOpen(false)}
         chatName={chatRecipient?.name || "Chat"}

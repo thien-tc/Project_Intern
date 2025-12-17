@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Plus, Calendar } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import { UserAvatar } from '@/components/common/UserAvatar';
-import { PriorityBadge } from '@/components/common/PriorityBadge';
+// import { PriorityBadge } from '@/components/common/PriorityBadge';
 
 interface GanttTask {
   id: string;
@@ -20,7 +20,7 @@ interface GanttTask {
 
 export function TaskGantt() {
   const { state } = useApp();
-  
+
   // Mock Gantt data based on tasks
   const ganttTasks: GanttTask[] = [
     {
@@ -73,13 +73,13 @@ export function TaskGantt() {
     const headers = [];
     const startDate = new Date('2024-01-01');
     const endDate = new Date('2024-02-26');
-    
+
     const current = new Date(startDate);
     while (current <= endDate) {
       headers.push(new Date(current));
       current.setDate(current.getDate() + 7); // Weekly intervals
     }
-    
+
     return headers;
   };
 
@@ -87,10 +87,10 @@ export function TaskGantt() {
     const totalDays = Math.ceil((timelineEnd.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24));
     const taskStartDays = Math.ceil((task.startDate.getTime() - timelineStart.getTime()) / (1000 * 60 * 60 * 24));
     const taskDuration = Math.ceil((task.endDate.getTime() - task.startDate.getTime()) / (1000 * 60 * 60 * 24));
-    
+
     const leftPercent = (taskStartDays / totalDays) * 100;
     const widthPercent = (taskDuration / totalDays) * 100;
-    
+
     return { left: `${leftPercent}%`, width: `${widthPercent}%` };
   };
 
@@ -117,13 +117,13 @@ export function TaskGantt() {
             </Button>
           </div>
         </CardHeader>
-        
+
         <CardContent>
           <div className="space-y-6">
             {/* Project Timeline */}
             <div>
               <h3 className="font-semibold mb-4">Project Timeline</h3>
-              
+
               {/* Timeline Header */}
               <div className="flex mb-4">
                 <div className="w-80 flex-shrink-0"></div>
@@ -141,7 +141,7 @@ export function TaskGantt() {
                 {ganttTasks.map(task => {
                   const user = getUser(task.assignee);
                   const barPosition = calculateBarPosition(task, timelineStart, timelineEnd);
-                  
+
                   return (
                     <div key={task.id} className="flex items-center">
                       {/* Task Info */}
@@ -150,7 +150,7 @@ export function TaskGantt() {
                         <div className="flex-1 min-w-0">
                           <p className="font-medium text-sm truncate">{task.title}</p>
                           <div className="flex items-center gap-2">
-                            <PriorityBadge priority={task.priority} showIcon={false} />
+                            {/* <PriorityBadge priority={task.priority} showIcon={false} /> */}
                             <span className="text-xs text-muted-foreground">
                               {task.progress}%
                             </span>
@@ -181,7 +181,7 @@ export function TaskGantt() {
               <div className="space-y-3">
                 {ganttTasks.filter(task => task.dependencies.length > 0).map(task => {
                   const dependentTask = ganttTasks.find(t => t.id === task.dependencies[0]);
-                  
+
                   return (
                     <div key={task.id} className="p-3 rounded-lg border">
                       <div className="flex items-center justify-between">

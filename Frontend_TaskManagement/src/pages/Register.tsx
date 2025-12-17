@@ -118,7 +118,7 @@ export default function Register() {
     } catch (err: any) {
       setOtpError(
         err.response?.data?.message ||
-          "OTP verification failed. Please try again."
+        "OTP verification failed. Please try again."
       );
     } finally {
       setIsLoading(false);
@@ -233,14 +233,12 @@ export default function Register() {
                     {passwordRequirements.map((req, index) => (
                       <div
                         key={index}
-                        className={`flex items-center gap-2 ${
-                          req.met ? "text-green-600" : "text-muted-foreground"
-                        }`}
+                        className={`flex items-center gap-2 ${req.met ? "text-green-600" : "text-muted-foreground"
+                          }`}
                       >
                         <CheckCircle
-                          className={`h-3 w-3 ${
-                            req.met ? "text-green-600" : "text-muted-foreground"
-                          }`}
+                          className={`h-3 w-3 ${req.met ? "text-green-600" : "text-muted-foreground"
+                            }`}
                         />
                         {req.text}
                       </div>

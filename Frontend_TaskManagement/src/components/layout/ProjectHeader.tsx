@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
-  List, 
-  LayoutGrid, 
-  Calendar, 
-  BarChart3, 
-  Table, 
+import {
+  List,
+  LayoutGrid,
+  Calendar,
+  BarChart3,
+  Table,
   Filter,
   Search,
   MessageCircle,
@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { useApp } from '@/context/AppContext';
+import { InviteMemberDialog } from './InviteMemberDialog';
 
 type ViewType = 'list' | 'board' | 'calendar' | 'gantt' | 'table';
 
@@ -29,6 +30,7 @@ interface ProjectHeaderProps {
 export function ProjectHeader({ currentView, onViewChange, onChatOpen }: ProjectHeaderProps) {
   const { state } = useApp();
   const [searchQuery, setSearchQuery] = useState('');
+  const [isInviteOpen, setIsInviteOpen] = useState(false);
 
   const views = [
     { key: 'list' as const, label: 'List', icon: List },
@@ -47,8 +49,8 @@ export function ProjectHeader({ currentView, onViewChange, onChatOpen }: Project
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
-              <div 
-                className="w-4 h-4 rounded-full" 
+              <div
+                className="w-4 h-4 rounded-full"
                 style={{ backgroundColor: currentProject?.color || '#3b82f6' }}
               />
               <h1 className="text-xl font-semibold">
@@ -61,10 +63,17 @@ export function ProjectHeader({ currentView, onViewChange, onChatOpen }: Project
           </div>
 
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" onClick={() => setIsInviteOpen(true)}>
               <Share className="mr-2 h-4 w-4" />
               Share
             </Button>
+            {currentProject && (
+              <InviteMemberDialog
+                isOpen={isInviteOpen}
+                onClose={() => setIsInviteOpen(false)}
+                spaceId={currentProject.id}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -90,11 +99,11 @@ export function ProjectHeader({ currentView, onViewChange, onChatOpen }: Project
 
           {/* Controls */}
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            {/* <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <span>Group: Status</span>
               <span>Subtasks</span>
-            </div>
-            
+            </div> */}
+
             <div className="flex items-center gap-2">
               <Button variant="outline" size="sm">
                 Sort
@@ -109,14 +118,14 @@ export function ProjectHeader({ currentView, onViewChange, onChatOpen }: Project
               <Button variant="outline" size="sm">
                 Assignee
               </Button>
-              <Button variant="outline" size="sm">
+              {/* <Button variant="outline" size="sm">
                 <Search className="mr-2 h-4 w-4" />
                 Customize
-              </Button>
-              <Button className="gap-2">
+              </Button> */}
+              {/* <Button className="gap-2">
                 <Plus className="h-4 w-4" />
                 New Task
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

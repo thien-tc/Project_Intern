@@ -4,10 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
-import { 
-  Plus, 
-  ChevronDown, 
-  ChevronRight, 
+import {
+  Plus,
+  ChevronDown,
+  ChevronRight,
   MoreHorizontal,
   Calendar,
   User
@@ -42,7 +42,7 @@ export function SubtaskList({ task, onSubtaskUpdate }: SubtaskListProps) {
 
   const handleAddSubtask = () => {
     if (!newSubtaskTitle.trim()) return;
-    
+
     // Here you would typically dispatch an action to add the subtask
     console.log('Adding subtask:', newSubtaskTitle);
     setNewSubtaskTitle('');
@@ -60,8 +60,8 @@ export function SubtaskList({ task, onSubtaskUpdate }: SubtaskListProps) {
               className="h-6 w-6 p-0"
               onClick={() => setIsExpanded(!isExpanded)}
             >
-              {isExpanded ? 
-                <ChevronDown className="h-4 w-4" /> : 
+              {isExpanded ?
+                <ChevronDown className="h-4 w-4" /> :
                 <ChevronRight className="h-4 w-4" />
               }
             </Button>
@@ -69,7 +69,7 @@ export function SubtaskList({ task, onSubtaskUpdate }: SubtaskListProps) {
               Subtasks ({completedSubtasks}/{totalSubtasks})
             </CardTitle>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <Progress value={progress} className="w-20 h-2" />
             <span className="text-sm text-muted-foreground">{progress}%</span>
@@ -83,24 +83,23 @@ export function SubtaskList({ task, onSubtaskUpdate }: SubtaskListProps) {
             {/* Existing Subtasks */}
             {task.subtasks.map((subtask) => {
               const assignee = subtask.assigneeId ? getUser(subtask.assigneeId) : null;
-              
+
               return (
-                <div 
-                  key={subtask.id} 
+                <div
+                  key={subtask.id}
                   className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors group"
                 >
                   <Checkbox
                     checked={subtask.completed}
-                    onCheckedChange={(checked) => 
+                    onCheckedChange={(checked) =>
                       handleSubtaskToggle(subtask.id, checked as boolean)
                     }
                     className="data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
                   />
-                  
+
                   <div className="flex-1 min-w-0">
-                    <p className={`text-sm font-medium ${
-                      subtask.completed ? 'line-through text-muted-foreground' : ''
-                    }`}>
+                    <p className={`text-sm font-medium ${subtask.completed ? 'line-through text-muted-foreground' : ''
+                      }`}>
                       {subtask.title}
                     </p>
                   </div>
@@ -109,7 +108,7 @@ export function SubtaskList({ task, onSubtaskUpdate }: SubtaskListProps) {
                     {assignee && (
                       <UserAvatar user={assignee} size="sm" />
                     )}
-                    
+
                     <Button
                       variant="ghost"
                       size="sm"
@@ -145,9 +144,9 @@ export function SubtaskList({ task, onSubtaskUpdate }: SubtaskListProps) {
                 <Button size="sm" onClick={handleAddSubtask}>
                   Add
                 </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   onClick={() => {
                     setShowAddForm(false);
                     setNewSubtaskTitle('');
